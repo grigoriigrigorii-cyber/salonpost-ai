@@ -65,6 +65,28 @@ button.secondary{background:#343440}
 
 <p class="small">SalonPost AI • Versiunea 2.0 demonstrativă</p>
 </main>
+<div class="card">
+<h2>🎬 Generator de Reels</h2>
+<p>Idei de videoclipuri pentru promovarea salonului.</p>
+
+<label>Serviciul promovat</label>
+<select id="reelService">
+<option>Fade haircut</option>
+<option>Tuns bărbați</option>
+<option>Tuns și barbă</option>
+<option>Coafură</option>
+<option>Manichiură</option>
+</select>
+
+<button onclick="generateReel()">Generează idee Reel</button>
+
+<div class="card">
+<h3>Ideea videoclipului</h3>
+<p id="reelResult">Ideea ta va apărea aici.</p>
+<button class="secondary" onclick="copyReel()">Copiază ideea</button>
+</div>
+</div>
+
 
 <script>
 let current = 0;
