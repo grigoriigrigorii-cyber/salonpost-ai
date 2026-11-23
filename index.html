@@ -3,94 +3,141 @@
 <html lang="ro">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SalonPost AI</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#101014;color:white;padding:25px}
-.container{max-width:650px;margin:40px auto}
-h1{font-size:36px;margin-bottom:8px}
+body{margin:0;padding:22px;background:#101014;color:#fff;font-family:Arial}
+main{max-width:650px;margin:35px auto}
+h1{font-size:36px}
 h1 span{color:#a78bfa}
-p{color:#aaa;line-height:1.5}
-.card{background:#1c1c24;padding:22px;border-radius:16px;margin-top:25px}
+p{color:#aaa;line-height:1.6}
+.card{background:#1c1c24;padding:20px;border-radius:15px;margin-top:20px}
 label{display:block;margin:15px 0 8px}
-input,select,button{width:100%;padding:14px;border-radius:9px;border:0;font-size:16px}
+input,select,button{width:100%;padding:14px;border:0;border-radius:9px;font-size:16px}
 input,select{background:#30303b;color:white}
-button{background:#8b5cf6;color:white;font-weight:bold;margin-top:20px;cursor:pointer}
-button:hover{background:#7544df}
-#result{white-space:pre-wrap;line-height:1.7;color:#eee}
-.small{font-size:13px;color:#888}
+button{background:#8b5cf6;color:white;font-weight:bold;margin-top:15px}
+button.secondary{background:#343440}
+#result{white-space:pre-wrap;line-height:1.7;color:white}
+.small{font-size:12px;color:#888}
 </style>
 </head>
 <body>
-<div class="container">
+<main>
 <h1>SalonPost <span>AI</span></h1>
-<p>Idei și texte pentru promovarea frizeriilor și saloanelor.</p>
+<p>Conținut modern pentru frizerii și saloane.</p>
 
 <div class="card">
-<h2>Generează o postare</h2>
+<h2>Creează o postare</h2>
 
-<label for="business">Numele salonului</label>
+<label>Numele salonului</label>
 <input id="business" placeholder="Ex: Barber Studio">
 
-<label for="service">Serviciul promovat</label>
+<label>Serviciul</label>
 <select id="service">
-<option>Tuns bărbați</option>
 <option>Fade haircut</option>
+<option>Tuns bărbați</option>
 <option>Tuns și barbă</option>
 <option>Coafură</option>
 <option>Manichiură</option>
 <option>Vopsirea părului</option>
 </select>
 
-<label for="style">Stilul postării</label>
+<label>Stilul postării</label>
 <select id="style">
 <option>Modern</option>
 <option>Elegant</option>
 <option>Prietenos</option>
 <option>Promoțional</option>
+<option>Profesional</option>
 </select>
 
-<button onclick="generatePost()">Generează postarea</button>
+<button onclick="generatePost()">Generează postare</button>
+</div>
 
 <div class="card">
-<h3>Rezultatul tău</h3>
-<p id="result">Postarea generată va apărea aici.</p>
-<button onclick="copyPost()">Copiază textul</button>
-</div>
-</div>
-<p class="small">SalonPost AI — prima versiune demonstrativă.</p>
+<h2>Rezultatul tău</h2>
+<p id="number">Varianta 0 / 5</p>
+<div id="result">Postarea ta va apărea aici.</div>
+<button onclick="generatePost()">Altă variantă ↻</button>
+<button class="secondary" onclick="copyPost()">Copiază textul</button>
 </div>
 
+<p class="small">SalonPost AI • Versiunea 2.0 demonstrativă</p>
+</main>
+
 <script>
+let current = 0;
+let posts = [];
+
 function generatePost(){
-const name=document.getElementById("business").value.trim() || "Salonul nostru";
+const name=document.getElementById("business").value.trim() || "salonul nostru";
 const service=document.getElementById("service").value;
 const style=document.getElementById("style").value;
 
-const intros={
-"Modern":"Un look fresh începe cu alegerea potrivită! ✨",
-"Elegant":"Stilul și atenția la detalii fac diferența.",
-"Prietenos":"E timpul pentru o schimbare de look! 🙌",
-"Promoțional":"Pregătește-te pentru următorul tău look!"
-};
-
-const text =
-`${intros[style]}
+const templates = [
+`Un look fresh începe cu alegerea potrivită! ✨
 
 La ${name} te așteptăm pentru ${service.toLowerCase()}.
 
-Programează-te și oferă-ți un moment pentru tine!
+Programează-te și oferă-ți un moment pentru tine!`,
+`Schimbarea începe cu un stil nou! 🔥
 
-📩 Scrie-ne pentru programări.
-#salon #barber #hairstyle #style`;
+${name} îți oferă servicii de ${service.toLowerCase()}, cu atenție la detalii.
 
-document.getElementById("result").textContent=text;
+Scrie-ne pentru o programare!`,
+`Stilul tău merită atenție! ✂️
+
+Alege ${name} pentru următorul tău ${service.toLowerCase()}.
+
+Te așteptăm!`,
+`E timpul pentru un refresh! ✨
+
+La ${name}, fiecare detaliu contează. Descoperă serviciile noastre de ${service.toLowerCase()}.
+
+Rezervă-ți locul!`,
+`Un stil bun vorbește de la sine! 💈
+
+${name} te așteaptă pentru ${service.toLowerCase()}.
+
+Contactează-ne și programează-te!`
+];
+
+const intros = {
+"Modern":"✨ Stil modern, atenție la detalii.",
+"Elegant":"Eleganța se vede în fiecare detaliu.",
+"Prietenos":"Te așteptăm cu drag!",
+"Promoțional":"Nu rata ocazia pentru un look nou!",
+"Profesional":"Calitate și profesionalism la fiecare programare."
+};
+
+const tags = {
+"Fade haircut":"#fade #barber #haircut #barbershop",
+"Tuns bărbați":"#tuns #barber #menshair #barbershop",
+"Tuns și barbă":"#barba #haircut #barber #style",
+"Coafură":"#coafura #hairstyle #hair #salon",
+"Manichiură":"#manichiura #nails #nailstyle #salon",
+"Vopsirea părului":"#haircolor #vopsire #hairstyle #salon"
+};
+
+posts = templates.map((template,i) =>
+template + "\n\n" + intros[style] + "\n\n📩 Scrie-ne pentru programări.\n" + tags[service]
+);
+
+current = 0;
+showPost();
+}
+
+function showPost(){
+document.getElementById("result").textContent=posts[current];
+document.getElementById("number").textContent=`Varianta ${current+1} / ${posts.length}`;
+if(current < posts.length-1) current++;
+else current=0;
 }
 
 function copyPost(){
 const text=document.getElementById("result").textContent;
-if(text==="Postarea generată va apărea aici.") return;
+if(!posts.length)return;
 navigator.clipboard.writeText(text)
 .then(()=>alert("Text copiat!"))
 .catch(()=>alert("Selectează și copiază textul manual."));
