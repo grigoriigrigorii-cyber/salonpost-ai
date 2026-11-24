@@ -4,576 +4,301 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#10101a">
 <title>SalonPost AI</title>
-
 <style>
-:root {
-  --bg:#10101a;
-  --card:#1b1b29;
-  --card2:#242438;
-  --purple:#9875ff;
-  --purple2:#7049dc;
-  --text:#f7f5ff;
-  --muted:#aaa7bd;
-  --border:#34334b;
-}
-
-* {box-sizing:border-box}
-
-body {
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,sans-serif;
-}
-
-button,input,select {font:inherit}
-
-button {
-  border:0;
-  cursor:pointer;
-  transition:.2s;
-}
-
-button:active {transform:scale(.98)}
-
-.nav {
-  padding:20px;
-  border-bottom:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  max-width:1100px;
-  margin:auto;
-}
-
-.logo {
-  font-size:23px;
-  font-weight:800;
-}
-
-.logo span {color:var(--purple)}
-
-.version {
-  font-size:12px;
-  color:#c6b7ff;
-  background:#30264e;
-  padding:7px 12px;
-  border-radius:20px;
-}
-
-.container {
-  max-width:1000px;
-  margin:35px auto;
-  padding:0 18px;
-}
-
-.hero {
-  text-align:center;
-  padding:35px 10px;
-}
-
-.hero h1 {
-  font-size:clamp(30px,6vw,48px);
-  margin:0 0 14px;
-}
-
-.hero h1 span {color:var(--purple)}
-
-.hero p {
-  color:var(--muted);
-  line-height:1.6;
-}
-
-.tabs {
-  display:flex;
-  gap:10px;
-  margin:25px 0;
-}
-
-.tab {
-  flex:1;
-  padding:14px 8px;
-  border-radius:12px;
-  background:var(--card);
-  color:var(--muted);
-  font-weight:bold;
-}
-
-.tab.active {
-  background:var(--purple2);
-  color:white;
-}
-
-.panel {
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:23px;
-  margin-bottom:25px;
-}
-
-.panel h2 {
-  margin-top:0;
-  font-size:23px;
-}
-
-.subtitle {
-  color:var(--muted);
-  line-height:1.5;
-  font-size:14px;
-}
-
-label {
-  display:block;
-  margin:18px 0 9px;
-  font-size:14px;
-  font-weight:bold;
-}
-
-input,select {
-  width:100%;
-  padding:15px;
-  background:var(--card2);
-  border:1px solid var(--border);
-  border-radius:10px;
-  color:white;
-  outline:none;
-}
-
-input:focus,select:focus {
-  border-color:var(--purple);
-}
-
-.primary {
-  width:100%;
-  padding:16px;
-  margin-top:22px;
-  background:linear-gradient(110deg,var(--purple2),var(--purple));
-  color:white;
-  border-radius:11px;
-  font-weight:bold;
-  font-size:15px;
-}
-
-.secondary {
-  padding:13px;
-  background:var(--card2);
-  color:white;
-  border:1px solid var(--border);
-  border-radius:10px;
-  font-weight:bold;
-}
-
-.result {
-  background:#131320;
-  border:1px solid var(--border);
-  border-radius:13px;
-  padding:18px;
-  margin-top:22px;
-}
-
-.result-top {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
-
-.result-top h3 {margin:0}
-
-.counter {
-  color:#c5b5ff;
-  font-size:13px;
-}
-
-.output {
-  white-space:pre-wrap;
-  line-height:1.8;
-  font-size:15px;
-  color:#e8e5f5;
-  margin:20px 0;
-  overflow-wrap:anywhere;
-}
-
-.actions {
-  display:flex;
-  gap:10px;
-}
-
-.actions button {flex:1}
-
-.hidden {display:none}
-
-.footer {
-  text-align:center;
-  color:var(--muted);
-  padding:30px 10px;
-  font-size:13px;
-}
-
-@media(max-width:500px) {
-  .panel {padding:17px}
-  .actions {flex-direction:column}
-  .nav {padding:16px}
-}
+:root{--bg:#0b0b14;--panel:#151525;--panel2:#1d1d32;--purple:#8b5cf6;--pink:#c084fc;--text:#f5f3ff;--muted:#aaa6c3;--border:#302d49}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#0b0b14,#17112b);color:var(--text);font-family:Arial,sans-serif;min-height:100vh}
+header{padding:25px 18px 15px;text-align:center}
+.logo{font-size:27px;font-weight:900;letter-spacing:-1px}
+.logo span{color:var(--pink)}
+header p{color:var(--muted);font-size:13px}
+.container{max-width:850px;margin:auto;padding:10px 15px 45px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:5px 0 15px}
+.tab{flex:1;min-width:105px;border:1px solid var(--border);background:var(--panel);color:var(--muted);padding:13px 8px;border-radius:12px;font-weight:bold;cursor:pointer}
+.tab.active{background:linear-gradient(120deg,#7c3aed,#a855f7);color:white;border-color:transparent}
+.panel{display:none;background:rgba(21,21,37,.96);border:1px solid var(--border);padding:19px;border-radius:18px;box-shadow:0 10px 35px #0003}
+.panel.active{display:block}
+h2{font-size:20px;margin:0 0 7px}
+.sub{color:var(--muted);font-size:13px;margin:0 0 18px;line-height:1.5}
+label{display:block;font-size:13px;color:#d8d1f5;margin:14px 0 7px}
+input,select,textarea{width:100%;padding:13px;border:1px solid var(--border);border-radius:10px;background:#10101d;color:white;font-size:15px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--purple)}
+textarea{min-height:95px;resize:vertical}
+.btn{border:0;border-radius:11px;padding:13px 16px;color:white;background:linear-gradient(110deg,#7c3aed,#a855f7);font-size:14px;font-weight:bold;cursor:pointer}
+.btn:active,.tab:active{transform:scale(.98)}
+.btn.secondary{background:#292640;border:1px solid var(--border)}
+.btn.small{padding:9px 12px;font-size:12px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.output{margin-top:18px;display:grid;gap:12px}
+.result{background:#10101d;border:1px solid var(--border);padding:15px;border-radius:13px}
+.result-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.result-head strong{font-size:14px;color:#d8b4fe}
+.result-text{white-space:pre-wrap;line-height:1.55;font-size:14px;color:#eeeafc}
+.day{background:#10101d;border:1px solid var(--border);border-radius:13px;padding:14px;margin-top:11px}
+.day h3{font-size:15px;color:#d8b4fe;margin:0 0 8px}
+.day p{font-size:13px;line-height:1.5;color:#eeeafc;white-space:pre-wrap}
+.day .meta{font-size:12px;color:var(--muted);margin-bottom:8px}
+footer{text-align:center;color:#77728e;font-size:11px;padding:22px}
+.hidden{display:none!important}
+@media(min-width:650px){.panel{padding:25px}.output.two{grid-template-columns:1fr 1fr}}
 </style>
 </head>
-
 <body>
-
-<header class="nav">
-  <div class="logo">SalonPost <span>AI.</span></div>
-  <div class="version">VERSION 3.0</div>
+<header>
+  <div class="logo">SalonPost <span>AI</span></div>
+  <p>Conținut pentru saloane. Simplu, rapid și profesionist.</p>
 </header>
 
 <main class="container">
+  <nav class="tabs">
+    <button class="tab active" data-tab="posts">✍️ Postări</button>
+    <button class="tab" data-tab="reels">🎬 Reels</button>
+    <button class="tab" data-tab="planner">📅 Planificator</button>
+  </nav>
 
-<section class="hero">
-  <h1>Grow your salon with <span>AI.</span></h1>
-  <p>Conținut creat pentru saloane, frizerii și profesioniști în beauty.</p>
-</section>
+  <section class="panel active" id="posts">
+    <h2>Generator de postări</h2>
+    <p class="sub">Creează 5 variante de texte pentru pagina salonului tău.</p>
+    <label for="business">Numele salonului / frizeriei</label>
+    <input id="business" placeholder="Ex: Barber Shop">
+    <label for="service">Serviciul promovat</label>
+    <select id="service">
+      <option value="fade haircut">Fade haircut</option>
+      <option value="tuns clasic">Tuns clasic</option>
+      <option value="aranjarea bărbii">Aranjarea bărbii</option>
+      <option value="coafură">Coafură</option>
+      <option value="vopsire">Vopsire</option>
+      <option value="manichiură">Manichiură</option>
+      <option value="servicii de înfrumusețare">Servicii de înfrumusețare</option>
+    </select>
+    <label for="postTone">Stilul postării</label>
+    <select id="postTone">
+      <option value="friendly">Prietenos</option>
+      <option value="premium">Elegant / Premium</option>
+      <option value="energetic">Energic</option>
+      <option value="professional">Profesional</option>
+    </select>
+    <div class="actions">
+      <button class="btn" onclick="generatePosts()">Generează 5 variante</button>
+      <button class="btn secondary" onclick="nextPost()">Alte variante</button>
+    </div>
+    <div class="output" id="postOutput"></div>
+  </section>
 
-<div class="tabs">
-  <button class="tab active" id="postTab" onclick="switchTab('post')">
-    ✍️ Postări
-  </button>
-  <button class="tab" id="reelTab" onclick="switchTab('reel')">
-    🎬 Reels
-  </button>
-</div>
+  <section class="panel" id="reels">
+    <h2>Generator de Reels</h2>
+    <p class="sub">Idei de videoclipuri scurte pentru Instagram și TikTok.</p>
+    <label for="reelBusiness">Numele salonului</label>
+    <input id="reelBusiness" placeholder="Ex: Barber Shop">
+    <label for="reelService">Serviciul prezentat</label>
+    <select id="reelService">
+      <option>Fade haircut</option>
+      <option>Tuns clasic</option>
+      <option>Aranjarea bărbii</option>
+      <option>Coafură</option>
+      <option>Manichiură</option>
+      <option>Vopsire</option>
+    </select>
+    <div class="actions">
+      <button class="btn" onclick="generateReels()">Generează idee de Reel</button>
+      <button class="btn secondary" onclick="nextReel()">Altă idee</button>
+    </div>
+    <div class="output" id="reelOutput"></div>
+  </section>
 
-<!-- GENERATOR POSTARI -->
-
-<section id="postSection" class="panel">
-
-<h2>✍️ Generator de postări</h2>
-<p class="subtitle">Creează texte atractive pentru Instagram și Facebook.</p>
-
-<label for="business">Numele salonului</label>
-<input id="business" placeholder="Ex: Royal Barber Studio">
-
-<label for="service">Serviciul promovat</label>
-<select id="service">
-<option value="Fade haircut">Fade haircut</option>
-<option value="Tuns bărbați">Tuns bărbați</option>
-<option value="Tuns și barbă">Tuns și barbă</option>
-<option value="Coafură">Coafură</option>
-<option value="Manichiură">Manichiură</option>
-<option value="Vopsirea părului">Vopsirea părului</option>
-<option value="Tratamente faciale">Tratamente faciale</option>
-</select>
-
-<label for="style">Stilul postării</label>
-<select id="style">
-<option value="modern">Modern</option>
-<option value="elegant">Elegant</option>
-<option value="friendly">Prietenos</option>
-<option value="promo">Promoțional</option>
-<option value="professional">Profesional</option>
-</select>
-
-<button class="primary" onclick="generatePosts()">
-  ✨ Generează 5 variante
-</button>
-
-<div class="result">
-  <div class="result-top">
-    <h3>Rezultatul tău</h3>
-    <span class="counter" id="postCounter">0 / 5</span>
-  </div>
-
-  <div class="output" id="postOutput">
-    Postările tale vor apărea aici.
-  </div>
-
-  <div class="actions">
-    <button class="secondary" onclick="nextPost()">↻ Altă variantă</button>
-    <button class="secondary" onclick="copyText('postOutput')">📋 Copiază</button>
-  </div>
-</div>
-
-</section>
-
-<!-- GENERATOR REELS -->
-
-<section id="reelSection" class="panel hidden">
-
-<h2>🎬 Generator de Reels</h2>
-<p class="subtitle">Creează idei de videoclipuri care atrag atenția.</p>
-
-<label for="reelBusiness">Numele salonului</label>
-<input id="reelBusiness" placeholder="Ex: Royal Barber Studio">
-
-<label for="reelService">Serviciul promovat</label>
-<select id="reelService">
-<option>Fade haircut</option>
-<option>Tuns bărbați</option>
-<option>Tuns și barbă</option>
-<option>Coafură</option>
-<option>Manichiură</option>
-<option>Vopsirea părului</option>
-</select>
-
-<label for="reelStyle">Tipul videoclipului</label>
-<select id="reelStyle">
-<option value="transformation">Transformare înainte și după</option>
-<option value="process">Procesul de lucru</option>
-<option value="tips">Sfaturi și trucuri</option>
-<option value="promotion">Promovare</option>
-<option value="trending">Video creativ</option>
-</select>
-
-<button class="primary" onclick="generateReels()">
-  🎥 Generează idei de Reels
-</button>
-
-<div class="result">
-  <div class="result-top">
-    <h3>Scenariul videoclipului</h3>
-    <span class="counter" id="reelCounter">0 / 5</span>
-  </div>
-
-  <div class="output" id="reelOutput">
-    Ideile tale vor apărea aici.
-  </div>
-
-  <div class="actions">
-    <button class="secondary" onclick="nextReel()">↻ Altă idee</button>
-    <button class="secondary" onclick="copyText('reelOutput')">📋 Copiază</button>
-  </div>
-</div>
-
-</section>
-
+  <section class="panel" id="planner">
+    <h2>Planificator de conținut – 7 zile</h2>
+    <p class="sub">Primește un program săptămânal cu idei de postări, Reels și Stories.</p>
+    <label for="planBusiness">Numele salonului</label>
+    <input id="planBusiness" placeholder="Ex: Barber Shop">
+    <label for="planType">Tipul afacerii</label>
+    <select id="planType">
+      <option value="frizerie">Frizerie / Barber shop</option>
+      <option value="salon">Salon de frumusețe</option>
+      <option value="manichiura">Salon de manichiură</option>
+      <option value="coafor">Salon de coafură</option>
+    </select>
+    <label for="planGoal">Obiectivul săptămânii</label>
+    <select id="planGoal">
+      <option value="atragerea clienților noi">Atragerea clienților noi</option>
+      <option value="promovarea serviciilor">Promovarea serviciilor</option>
+      <option value="creșterea interacțiunii">Creșterea interacțiunii</option>
+      <option value="prezentarea profesionalismului">Prezentarea profesionalismului</option>
+    </select>
+    <div class="actions">
+      <button class="btn" onclick="generatePlan()">Generează planul de 7 zile</button>
+      <button class="btn secondary" onclick="copyPlan()">Copiază tot planul</button>
+    </div>
+    <div class="output" id="planOutput"></div>
+  </section>
 </main>
-
-<footer class="footer">
-  SalonPost AI · Your salon content assistant
-  <br><br>
-  Versiune demonstrativă 3.0
-</footer>
+<footer>SalonPost AI · Instrument demonstrativ pentru crearea de conținut</footer>
 
 <script>
+const $ = id => document.getElementById(id);
+let postIndex=0,reelIndex=0,currentPlan=[];
 
-// SCHIMBAREA SECTIUNILOR
-
-function switchTab(tab) {
-  const posts = document.getElementById("postSection");
-  const reels = document.getElementById("reelSection");
-
-  posts.classList.toggle("hidden",tab !== "post");
-  reels.classList.toggle("hidden",tab !== "reel");
-
-  document.getElementById("postTab").classList.toggle("active",tab === "post");
-  document.getElementById("reelTab").classList.toggle("active",tab === "reel");
-}
-
-// GENERATOR POSTARI
-
-let postVariants = [];
-let postIndex = 0;
-
-function generatePosts() {
-
-  const name = document.getElementById("business").value.trim() || "Salonul nostru";
-  const service = document.getElementById("service").value;
-  const style = document.getElementById("style").value;
-
-  const hashtags = {
-    "Fade haircut":"#fade #barber #haircut #barbershop #style",
-    "Tuns bărbați":"#tuns #barber #menshair #barbershop",
-    "Tuns și barbă":"#barba #haircut #barber #mensstyle",
-    "Coafură":"#coafura #hairstyle #hair #salon",
-    "Manichiură":"#manichiura #nails #nailstyle #beauty",
-    "Vopsirea părului":"#haircolor #hairstyle #salon #beauty",
-    "Tratamente faciale":"#skincare #beauty #facial #salon"
-  };
-
-  const styles = {
-    modern:"Stilul tău. Regulile tale. ✨",
-    elegant:"Eleganța se ascunde în fiecare detaliu.",
-    friendly:"Hai să-ți oferim un look nou! 🙌",
-    promo:"Este momentul perfect pentru o schimbare!",
-    professional:"Calitatea și profesionalismul fac diferența."
-  };
-
-  const intros = [
-    `Un look fresh începe cu alegerea potrivită! ✨`,
-    `Schimbarea începe cu un stil nou! 🔥`,
-    `Este timpul să strălucești!`,
-    `Detaliile mici creează un stil deosebit.`,
-    `Un stil bun vorbește de la sine! 💈`
-  ];
-
-  const bodies = [
-    `La ${name} te așteptăm pentru ${service.toLowerCase()}.`,
-    `${name} îți oferă servicii de ${service.toLowerCase()}, cu atenție la detalii.`,
-    `Alege ${name} pentru următorul tău ${service.toLowerCase()}.`,
-    `Descoperă experiența ${service.toLowerCase()} la ${name}.`,
-    `La ${name}, fiecare detaliu contează. Încearcă serviciul nostru de ${service.toLowerCase()}.`
-  ];
-
-  postVariants = [];
-
-  for(let i=0;i<5;i++) {
-    const intro = intros[i];
-    const body = bodies[(i + 2) % 5];
-
-    postVariants.push(
-      `${intro}\n\n${body}\n\n${styles[style]}\n\n📩 Scrie-ne pentru programări.\n\n${hashtags[service]}`
-    );
-  }
-
-  postIndex = 0;
-  showPost();
-}
-
-function showPost() {
-  if(!postVariants.length) return;
-
-  document.getElementById("postOutput").textContent = postVariants[postIndex];
-  document.getElementById("postCounter").textContent =
-    `${postIndex + 1} / ${postVariants.length}`;
-}
-
-function nextPost() {
-  if(!postVariants.length) {
-    generatePosts();
-    return;
-  }
-
-  postIndex = (postIndex + 1) % postVariants.length;
-  showPost();
-}
-
-// GENERATOR REELS
-
-let reelVariants = [];
-let reelIndex = 0;
-
-function generateReels() {
-
-  const name = document.getElementById("reelBusiness").value.trim() || "Salonul nostru";
-  const service = document.getElementById("reelService").value;
-  const type = document.getElementById("reelStyle").value;
-
-  const ideas = {
-
-    transformation:[
-      ["Arată rezultatul final în prima secundă.","Filmează aspectul inițial.","Prezintă câteva momente din proces.","Arată transformarea finală."],
-      ["Începe cu un cadru apropiat al rezultatului.","Arată pregătirea.","Prezintă procesul în câteva cadre rapide.","Încheie cu rezultatul."],
-      ["Filmează o tranziție între două cadre.","Arată schimbarea de look.","Adaugă textul: «O schimbare pe cinste!»."],
-      ["Arată detaliile rezultatului.","Filmează câteva etape.","Prezintă rezultatul din mai multe unghiuri."],
-      ["Începe cu textul «Înainte sau după?»","Arată procesul.","Dezvăluie rezultatul final."]
-    ],
-
-    process:[
-      ["Prezintă instrumentele folosite.","Arată pregătirea.","Filmează câteva etape din proces.","Arată rezultatul."],
-      ["Începe cu salonul pregătit.","Prezintă locul de lucru.","Arată cum se realizează serviciul.","Încheie cu rezultatul."],
-      ["Filmează detaliile muncii.","Arată atenția la fiecare etapă.","Prezintă rezultatul final."],
-      ["Arată pregătirea clientului.","Prezintă procesul în cadre scurte.","Adaugă numele salonului."],
-      ["Începe cu un cadru din timpul lucrului.","Arată câteva detalii interesante.","Încheie cu rezultatul."]
-    ],
-
-    tips:[
-      ["Prezintă un sfat util despre serviciu.","Explică de ce este important.","Încheie cu o recomandare."],
-      ["Începe cu întrebarea «Știai asta?»","Prezintă un truc util.","Arată un exemplu."],
-      ["Prezintă trei lucruri de care să ții cont.","Explică fiecare idee pe scurt.","Încheie cu o întrebare."],
-      ["Arată o greșeală frecventă.","Explică o alternativă mai bună.","Invită publicul să afle mai multe."],
-      ["Prezintă un sfat de îngrijire.","Arată un exemplu.","Adaugă un mesaj scurt."]
-    ],
-
-    promotion:[
-      ["Prezintă serviciul oferit.","Arată salonul.","Invită publicul să se programeze."],
-      ["Începe cu textul «Ai nevoie de un refresh?»","Prezintă serviciul.","Adaugă datele de contact."],
-      ["Arată atmosfera salonului.","Prezintă serviciile.","Încheie cu invitația la programare."],
-      ["Prezintă o ofertă reală a salonului.","Arată câteva imagini relevante.","Adaugă perioada ofertei, dacă există."],
-      ["Începe cu numele salonului.","Arată ce îl face special.","Invită publicul să-l viziteze."]
-    ],
-
-    trending:[
-      ["Folosește o melodie populară disponibilă în Instagram.","Sincronizează cadrele cu ritmul.","Arată rezultatul final."],
-      ["Creează o tranziție între două cadre.","Prezintă serviciul.","Adaugă un text scurt."],
-      ["Folosește un cadru surpriză.","Arată câteva detalii.","Încheie cu rezultatul."],
-      ["Prezintă o zi obișnuită în salon.","Arată momente interesante.","Încheie cu un mesaj amuzant."],
-      ["Începe cu o întrebare interesantă.","Prezintă serviciul.","Încheie cu o invitație."]
-    ]
-
-  };
-
-  const selected = ideas[type];
-
-  reelVariants = selected.map((steps,i) => {
-    return `🎬 IDEEA ${i+1}: ${service}\n\n` +
-    `🏪 Salon: ${name}\n\n` +
-    `📹 SCENARIU:\n` +
-    steps.map((step,j) => `${j+1}. ${step}`).join("\n") +
-    `\n\n📝 TEXT PE VIDEO:\n${["Transformarea începe aici! ✨","Atenție la fiecare detaliu!","Un rezultat pe măsură! 🔥","Stilul face diferența!","Programează-te chiar acum!"][i]}` +
-    `\n\n📩 DESCRIERE:\nDescoperă serviciul ${service} la ${name}. Scrie-ne pentru programări!\n\n#salon #beauty #style #reels`;
+document.querySelectorAll(".tab").forEach(button=>{
+  button.addEventListener("click",()=>{
+    document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+    document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
+    button.classList.add("active");
+    $(button.dataset.tab).classList.add("active");
   });
+});
 
-  reelIndex = 0;
-  showReel();
+function salonName(id){
+  return $(id).value.trim() || "Salonul nostru";
 }
-
-function showReel() {
-  if(!reelVariants.length) return;
-
-  document.getElementById("reelOutput").textContent = reelVariants[reelIndex];
-  document.getElementById("reelCounter").textContent =
-    `${reelIndex + 1} / ${reelVariants.length}`;
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
-
-function nextReel() {
-  if(!reelVariants.length) {
-    generateReels();
-    return;
-  }
-
-  reelIndex = (reelIndex + 1) % reelVariants.length;
-  showReel();
+function copyText(text){
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(()=>alert("Text copiat!")).catch(()=>fallbackCopy(text));
+  }else fallbackCopy(text);
 }
-
-// COPIERE TEXT
-
-function copyText(id) {
-  const text = document.getElementById(id).textContent;
-
-  if(!text || text.includes("vor apărea aici") || text.includes("Ideile tale vor apărea aici")) {
-    alert("Generează mai întâi un rezultat!");
-    return;
-  }
-
-  if(navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(text)
-      .then(() => alert("Text copiat cu succes!"))
-      .catch(() => fallbackCopy(text));
-  } else {
-    fallbackCopy(text);
-  }
-}
-
-function fallbackCopy(text) {
-  const area = document.createElement("textarea");
-  area.value = text;
-  area.style.position = "fixed";
-  area.style.opacity = "0";
+function fallbackCopy(text){
+  const area=document.createElement("textarea");
+  area.value=text;
+  area.style.position="fixed";
+  area.style.opacity="0";
   document.body.appendChild(area);
   area.select();
-
-  try {
-    document.execCommand("copy");
-    alert("Text copiat cu succes!");
-  } catch(error) {
-    alert("Nu s-a putut copia. Selectează textul manual.");
-  }
-
+  try{document.execCommand("copy");alert("Text copiat!");}
+  catch(e){alert("Nu s-a putut copia. Selectează textul manual.");}
   area.remove();
 }
+function renderResult(container,title,text){
+  const card=document.createElement("div");
+  card.className="result";
+  const head=document.createElement("div");
+  head.className="result-head";
+  const strong=document.createElement("strong");
+  strong.textContent=title;
+  const button=document.createElement("button");
+  button.className="btn small";
+  button.textContent="Copiază";
+  button.onclick=()=>copyText(text);
+  head.append(strong,button);
+  const content=document.createElement("div");
+  content.className="result-text";
+  content.textContent=text;
+  card.append(head,content);
+  container.append(card);
+}
 
+const postTemplates={
+friendly:[
+"Un look fresh începe cu alegerea potrivită! ✨ La {name} te așteptăm pentru {service}. Scrie-ne pentru o programare!",
+"Vrei o schimbare de look? Noi te ajutăm! 💈 Descoperă serviciul {service} la {name}. Rezervă-ți locul!",
+"Stilul tău merită atenție! 🔥 Te așteptăm la {name} pentru {service}. Dă-ne un mesaj pentru detalii!",
+"Un moment pentru tine, un rezultat pe care îl porți cu încredere. ✨ Alege {service} la {name}!",
+"Pregătit pentru un look nou? 😎 Vino la {name} și încearcă serviciul nostru de {service}!"
+],
+premium:[
+"Stilul se vede în detalii. ✨ La {name}, {service} înseamnă atenție și grijă pentru fiecare detaliu. Programează-te!",
+"Eleganța începe cu o alegere inspirată. Descoperă {service} la {name}. 📩 Contactează-ne pentru programări.",
+"Experiență, atenție și stil. La {name} îți oferim servicii de {service} într-o atmosferă plăcută.",
+"Fiecare detaliu contează. Alege {name} pentru serviciul {service} și bucură-te de timpul tău!",
+"Un stil bine ales vorbește de la sine. ✨ Te așteptăm la {name} pentru {service}."
+],
+energetic:[
+"🔥 E timpul pentru un refresh! Vino la {name} pentru {service}. Scrie-ne și rezervă-ți locul!",
+"Look nou, energie nouă! ⚡ {service} te așteaptă la {name}. Hai să facem o schimbare!",
+"Nu amâna schimbarea! 💈 Programează-te la {name} pentru {service}!",
+"Ready for a fresh look? 😎 La {name} te așteptăm pentru {service}!",
+"Stilul tău, alegerea ta! 🔥 Descoperă {service} la {name}!"
+],
+professional:[
+"La {name} oferim servicii de {service}, cu atenție acordată fiecărui client. Pentru informații și programări, trimite-ne un mesaj.",
+"Îngrijirea și stilul încep cu alegerea serviciilor potrivite. Te așteptăm la {name} pentru {service}.",
+"Punem accent pe atenție, calitate și o experiență plăcută. Descoperă serviciul {service} la {name}.",
+"Îți dorești un rezultat îngrijit? Programează o vizită la {name} pentru {service}.",
+"Suntem aici să te ajutăm să te simți bine în stilul tău. Contactează {name} pentru {service}."
+]
+};
+const hashtags={
+"fade haircut":"#fade #barber #barbershop #haircut #freshcut",
+"tuns clasic":"#tuns #barber #haircut #hairstyle #style",
+"aranjarea bărbii":"#beard #barber #beardstyle #grooming #barbershop",
+"coafură":"#coafura #hairstyle #hair #beauty #salon",
+"vopsire":"#haircolor #vopsire #hairstyle #beauty #salon",
+"manichiură":"#manichiura #nails #nailart #beauty #salon",
+"servicii de înfrumusețare":"#beauty #salon #ingrijire #style #selfcare"
+};
+function generatePosts(){
+  const name=salonName("business"),service=$("service").value,tone=$("postTone").value;
+  const templates=postTemplates[tone];
+  const output=$("postOutput");
+  output.innerHTML="";
+  for(let i=0;i<5;i++){
+    const template=templates[(postIndex+i)%templates.length];
+    const post=template.replaceAll("{name}",name).replaceAll("{service}",service);
+    renderResult(output,"Varianta "+(i+1),post+"\n\n"+(hashtags[service]||"#salon #beauty #style"));
+  }
+  postIndex=(postIndex+5)%templates.length;
+}
+function nextPost(){generatePosts();}
+
+const reelIdeas=[
+{hook:"„Ai nevoie de o schimbare?”",steps:["Arată rapid aspectul inițial.","Filmează procesul serviciului.","Arată rezultatul final."],end:"„Cum ți se pare rezultatul? Scrie-ne pentru o programare!”"},
+{hook:"„3 detalii care fac diferența”",steps:["Filmează pregătirea spațiului.","Arată un detaliu din timpul lucrului.","Prezintă rezultatul."],end:"„La {name}, fiecare detaliu contează.”"},
+{hook:"„POV: ai venit pentru un refresh”",steps:["Cadru scurt cu intrarea în salon.","Cadre scurte din proces.","Tranziție către rezultatul final."],end:"„E timpul pentru următoarea ta vizită!”"},
+{hook:"„Înainte vs. după”",steps:["Arată rezultatul inițial.","Folosește o tranziție simplă.","Prezintă rezultatul final din mai multe unghiuri."],end:"„Salvează ideea pentru următoarea programare!”"},
+{hook:"„O zi la {name}”",steps:["Filmează pregătirea salonului.","Arată câteva momente din activitate.","Încheie cu un cadru al salonului."],end:"„Te așteptăm și pe tine!”"}
+];
+function generateReels(){
+  const idea=reelIdeas[reelIndex%reelIdeas.length];
+  const name=salonName("reelBusiness"),service=$("reelService").value;
+  const text="🎬 IDEE REEL\n\nHOOK: "+idea.hook.replaceAll("{name}",name)+"\n\nSERVICIU: "+service+"\n\nCADRE:\n"+idea.steps.map((s,i)=>(i+1)+". "+s).join("\n")+"\n\nFINAL: "+idea.end.replaceAll("{name}",name)+"\n\nDurată recomandată: 10–20 secunde.\nText pe ecran: "+service;
+  $("reelOutput").innerHTML="";
+  renderResult($("reelOutput"),"Ideea ta de Reel",text);
+  reelIndex++;
+}
+function nextReel(){generateReels();}
+
+const days=[
+{day:"Luni",type:"Postare",idea:"Prezintă un serviciu important al salonului.",story:"Publică un Story cu programul săptămânii."},
+{day:"Marți",type:"Reel",idea:"Filmează un proces scurt și rezultatul final.",story:"Adaugă un sondaj: „Ți-ar plăcea acest stil?”"},
+{day:"Miercuri",type:"Story",idea:"Arată atmosfera din salon și echipa.",story:"Folosește o întrebare: „Ce serviciu ai vrea să vezi?”"},
+{day:"Joi",type:"Postare",idea:"Prezintă un rezultat recent, cu acordul clientului.",story:"Publică o fotografie din culise."},
+{day:"Vineri",type:"Reel",idea:"Realizează un videoclip înainte și după.",story:"Amintește urmăritorilor cum pot face o programare."},
+{day:"Sâmbătă",type:"Postare",idea:"Prezintă un serviciu popular și avantajele sale.",story:"Arată câteva momente din ziua de lucru."},
+{day:"Duminică",type:"Story",idea:"Mulțumește clienților pentru săptămână.",story:"Întreabă urmăritorii ce conținut vor să vadă săptămâna viitoare."}
+];
+function generatePlan(){
+  const name=salonName("planBusiness");
+  const type=$("planType").value;
+  const goal=$("planGoal").value;
+  currentPlan=[];
+  const output=$("planOutput");
+  output.innerHTML="";
+  days.forEach((d,i)=>{
+    const content="📅 "+d.day+"\nFormat: "+d.type+"\n\nIdee: "+d.idea+"\nStory: "+d.story+"\n\nAfacerе: "+name+"\nDomeniu: "+type+"\nObiectiv: "+goal+"\n\nRecomandare: folosește fotografii și videoclipuri reale din salon.";
+    currentPlan.push(content);
+    const card=document.createElement("div");
+    card.className="day";
+    const title=document.createElement("h3");
+    title.textContent=(i+1)+". "+d.day+" — "+d.type;
+    const meta=document.createElement("div");
+    meta.className="meta";
+    meta.textContent="Plan pentru "+name;
+    const paragraph=document.createElement("p");
+    paragraph.textContent="Postare/Reel: "+d.idea+"\nStory: "+d.story;
+    const button=document.createElement("button");
+    button.className="btn small";
+    button.textContent="Copiază ziua";
+    button.onclick=()=>copyText(content);
+    card.append(title,meta,paragraph,button);
+    output.append(card);
+  });
+}
+function copyPlan(){
+  if(!currentPlan.length){alert("Generează mai întâi planul de 7 zile.");return;}
+  copyText(currentPlan.join("\n\n--------------------\n\n"));
+}
 </script>
-
 </body>
 </html>
